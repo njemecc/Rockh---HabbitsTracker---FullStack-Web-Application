@@ -1,0 +1,28 @@
+.habbit-container {
+  width: 45rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+
+  border-bottom: 1px dashed white;
+  padding-bottom: 2rem;
+}
+
+.btn-danger {
+  background-color: red !important;
+}
+
+.btn-success {
+  background-color: green !important;
+}
+
+.btn-normal {
+  background-color: #1976d2 !important;
+}
+
+.habbit-container input {
+  color: white !important;
+}
+
+.habbit-container label {
+  color: white !important;
+}

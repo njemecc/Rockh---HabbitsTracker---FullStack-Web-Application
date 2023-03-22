@@ -1,0 +1,27 @@
+:root {
+  --primary-color-dark-blue-1: hsl(217, 28%, 15%);
+  --primary-color-dark-blue-2: hsl(218, 28%, 13%);
+  --primary-color-dark-blue-3: hsl(216, 53%, 9%);
+  --primary-color-dark-blue-4: hsl(219, 30%, 18%);
+  --accent-color-cyan: hsl(176, 68%, 64%);
+  --accent-color-blue: #1976d2;
+  --neutral-color-white: hsl(0, 0%, 100%);
+  --font-heading: "Raleway", sans-serif;
+  --font-body: "Open Sans", sans-serif;
+  --padding-sm: 2.5rem 2rem;
+  --padding-md: 3.5rem 3rem;
+  --padding-lg: 4.5rem 4rem;
+  --padding-footer: 15rem 4rem 1rem;
+  --padding-footer-tablet: 20rem 3rem 1rem;
+  --padding-footer-mobile: 25rem 3rem 1rem;
+}
+
+body {
+  background-color: var(--primary-color-dark-blue-2);
+  color: var(--neutral-color-white);
+  font-family: var(--font-body);
+}
+
+button {
+  color: white !important;
+}
