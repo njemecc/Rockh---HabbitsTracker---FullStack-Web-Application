@@ -6,6 +6,7 @@ const habbitInitialState = {
   habbitAdded: true,
   date: "",
   dateChanged: false,
+  changeOpen:false
 };
 
 const habbitSlice = createSlice({
@@ -23,6 +24,9 @@ const habbitSlice = createSlice({
     },
     dateChanged(state) {
       state.dateChanged = !state.dateChanged;
+    },
+    changeOpenChanged(state) {
+      state.changeOpen = !state.changeOpen;
     },
   },
 });

@@ -38,6 +38,7 @@ const Login = () => {
 
     const res = await response.json();
     console.log(res);
+    
 
     if (res == "Welcome back!") {
       toast.success("Welcome back!");
@@ -58,7 +59,7 @@ const Login = () => {
   return (
     <>
       <Link href="/">
-        <Image className="image-logo" src={logo} />
+        <Image alt="logo" className="image-logo" src={logo} />
       </Link>
       <div className="box">
         <form onSubmit={loginHandler} className="form">

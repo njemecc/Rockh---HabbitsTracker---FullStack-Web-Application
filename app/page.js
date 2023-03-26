@@ -48,11 +48,10 @@ export default function Home() {
             </h1>
 
             <p class="lg-p mt-2">
-              Rockh stores all your most important habbits in one secure
-              location. Access them wherever you need, share and collaborate
+              Rockh stores all your most important habbits in one place. Access them wherever you need, share and collaborate
               with friends family, and co-workers.
             </p>
-            <button class="btn mt-2"> Get Started</button>
+           <Link href="/register"><button class="btn mt-2"> Get Started</button></Link>
           </div>
         </section>
         <section class="features">
@@ -119,11 +118,10 @@ export default function Home() {
               />{" "}
             </div>
             <div class="features-item-body  mt-2">
-              <h3> Store any habbit</h3>
+              <h3>See your progress</h3>
               <p>
                 {" "}
-                Whether you're tracking your training progress or study hours
-                this app is perfect for that.
+                Rockh allows you to see your progress clearly and legibly through a graphic display.
               </p>
             </div>
           </div>

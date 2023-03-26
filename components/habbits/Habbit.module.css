@@ -26,3 +26,19 @@
 .habbit-container label {
   color: white !important;
 }
+
+.Habbit-name{
+  min-width: 7.5rem;
+}
+
+.text-field div {
+  border-bottom: 1px solid white !important;
+}
+
+.text-field input:focus {
+  border-bottom: none !important;
+}
+
+.avatar img:hover{
+  cursor: pointer;
+}

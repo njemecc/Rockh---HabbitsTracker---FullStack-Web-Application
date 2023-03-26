@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useEffect, useState } from "react";
 import styles from "./Habbit.module.css";
 
@@ -7,10 +7,21 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { habbitActions } from "@/store/habbitSlice";
 
+
+//Toastr react
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//components
+import ChangeModal from "../UI/ChangeModal";
+
+//react material components
 import { Button, Avatar, TextField, Typography } from "@mui/material";
 
 export const Habbit = (props) => {
+  const [image,setImage] = useState(props.image)
   const dispatch = useDispatch();
+  const openChange = useSelector((state => state.habbit.changeOpen))
   const date = useSelector((state) => state.habbit.date);
   const dateChanged = useSelector((state) => state.habbit.dateChanged);
   const [btnClass, setBtnClass] = useState("btn-normal");
@@ -23,6 +34,27 @@ export const Habbit = (props) => {
     setAnswer(e.target.value);
   };
 
+  const deleteButtonClickedHandler = async () => {
+
+    const deletedHabbit = {
+      email:localStorage.getItem("email"),
+      name:props.name
+    }
+    
+    const request = await fetch("/api/deleteHabbit", {
+      method: "POST",
+      body: JSON.stringify(deletedHabbit),
+    });
+
+    const res = request.json();
+    console.log(res);
+ //toast
+ const options = {autoClose:1500}
+
+    toast.error("Deleting habbit...",options)
+    dispatch(habbitActions.changeHabbitAdded())
+  }
+
   const doneButtonClickedHandler = async () => {
     if (answer >= props.goal) {
       success = true;
@@ -33,6 +65,8 @@ export const Habbit = (props) => {
       setBtnText("X");
       setBtnClass("btn-danger");
     }
+
+   
 
     const habbitDone = {
       email: localStorage.getItem("email"),
@@ -54,7 +88,14 @@ export const Habbit = (props) => {
     const res = request.json();
     console.log(res);
     setDisabled(true);
+
+    
   };
+
+  const modalChangeOpened = () => {
+    dispatch(habbitActions.changeOpenChanged())
+    localStorage.setItem("name",props.name)
+  }
 
   //changing the buttons to normale if date changesc
 
@@ -68,10 +109,10 @@ export const Habbit = (props) => {
 
   return (
     <div className={styles["habbit-container"]}>
-      <Avatar sx={{ width: 52, height: 52 }}>
+      <Avatar className={styles["avatar"]} onClick={modalChangeOpened} sx={{ width: 52, height: 52 }}>
         <img
           style={{ width: "100%", height: "100%", backgroundSize: "cover" }}
-          src={props.image}
+          src={image}
         />
       </Avatar>
       <Typography variant="h5" className={styles["Habbit-name"]}>
@@ -79,26 +120,40 @@ export const Habbit = (props) => {
       </Typography>
       <TextField
         onChange={answerChangeHandler}
-        className="standard-basic"
+        className={`${styles["text-field"]} standard-basic`}
         label={`${props.question} ? (${props.currency})`}
         variant="standard"
       />
+      
       <Typography
-        style={{ marginLeft: "7rem" }}
+        style={{ marginLeft: "7rem",display:"inline-block",minWidth:"91120px !important" }}
         variant="p"
         fontSize="1.2rem"
         className={styles["Habbit-name"]}
       >{`GOAL: ${props.goal} ${props.currency}`}</Typography>
+      
       <Button
         id="btn-done"
         className={styles[`${btnClass}`]}
         //disabled={disabled}
         onClick={doneButtonClickedHandler}
-        style={{ marginLeft: "12rem" }}
+        style={{ marginLeft: "7rem" }}
         variant="contained"
       >
         {btnText}
       </Button>
+      <Button
+        id="btn-done"
+        className={styles["btn-danger"]}
+  
+        onClick={deleteButtonClickedHandler}
+        style={{ marginLeft: "1rem" }}
+        variant="contained"
+      >
+        Delete
+      </Button>
+      <ChangeModal key={props.name} oldName={props.name} currency={props.currency} email={localStorage.getItem("email")} goal={props.goal} image={props.image} question={props.question} name={props.name}/>
+      <ToastContainer />
     </div>
   );
 };

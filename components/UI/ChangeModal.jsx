@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { Modal, Box, Typography, TextField, Button } from "@mui/material";
 import React from "react";
 import "./Modal.css";
@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const MyModal = (props) => {
+const changeModal = (props) => {
 
   const options = {autoClose:1500}
   const style = {
@@ -28,10 +28,10 @@ const MyModal = (props) => {
   };
 
   const dispatch = useDispatch();
-  const open = useSelector((state) => state.habbit.open);
+  const open = useSelector((state) => state.habbit.changeOpen);
 
   const onCloseHandler = () => {
-    dispatch(habbitActions.changeOpenState());
+    dispatch(habbitActions.changeOpenChanged());
   };
 
   const [name, setName] = useState("");
@@ -55,23 +55,24 @@ const MyModal = (props) => {
   const changePictureHandler = (e) => {
     setImageUrl(e.target.value);
   };
-
+[]
   const changeCurrencyHandler = (e) => {
     setCurrency(e.target.value);
   };
 
-  const sendHabbitToDB = async () => {
+  const changeHabbit = async () => {
     const dataToSend = {
-      email: `${localStorage.getItem("email")}`,
-      name: name,
-      question: question,
-      goal: goal,
-      currency: currency,
-      imageUrl: imageUrl,
+      oldName:props.oldName,
+      email: props.email,
+      name: name ? name : props.name ,
+      question: question ? question : props.question,
+      goal: goal ? goal : props.goal,
+      currency: currency? currency : props.currency,
+      imageUrl: imageUrl? imageUrl : props.image,
     };
     console.log(dataToSend);
 
-    const request = await fetch("/api/newHabbit", {
+    const request = await fetch("/api/changeHabbit", {
       method: "POST",
       body: JSON.stringify(dataToSend),
     });
@@ -80,40 +81,40 @@ const MyModal = (props) => {
     console.log(response);
 
     if (response.acknowledged === true) {
-      toast.success("New habbit is added!",options);
+      toast.success("Habbit Changed",options);
     } else {
       toast.error(`${response}`,options);
     }
 
     //zatvaranje modala
-    dispatch(habbitActions.changeOpenState());
+    dispatch(habbitActions.changeOpenChanged());
     dispatch(habbitActions.changeHabbitAdded());
   };
 
   return (
     <>
       <Modal
-        open={open}
+        open={open && localStorage.getItem("name") == props.name}
         onClose={onCloseHandler}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <Typography sx={{color:"black !important"}} id="modal-modal-title" variant="h6" component="h2">
-            New Habbit
+             {`Edit "${props.name}"`}
           </Typography>
           <form>
             <div>
               <TextField
                 onChange={changeNameHandler}
                 className="standard-basic"
-                label="Name"
+                label=" new Name"
                 variant="standard"
               />
               <TextField
                 onChange={changeQuestionHandler}
                 className="standard-basic"
-                label="Question"
+                label="new Question"
                 variant="standard"
               />
             </div>
@@ -121,13 +122,13 @@ const MyModal = (props) => {
               <TextField
                 onChange={changeGoalHandler}
                 className="standard-basic"
-                label="Goal"
+                label="new Goal"
                 variant="standard"
               />
               <TextField
                 onChange={changeCurrencyHandler}
                 className="standard-basic"
-                label="Currency"
+                label="new Currency"
                 variant="standard"
               />
             </div>
@@ -135,16 +136,16 @@ const MyModal = (props) => {
               <TextField
                 onChange={changePictureHandler}
                 className="standard-basic"
-                label="Picture URL"
+                label="new Picture URL"
                 variant="standard"
               />
               <Button
-                onClick={sendHabbitToDB}
+                onClick={changeHabbit}
                 className="button-add"
                 size="large"
                 variant="contained"
               >
-                Add
+                Apply
               </Button>
             </div>
           </form>
@@ -155,4 +156,4 @@ const MyModal = (props) => {
   );
 };
 
-export default MyModal;
+export default changeModal;
