@@ -71,12 +71,12 @@ export default function AccountMenu() {
           {" "}
           <Image src={logo} />{" "}
         </Link>
-        <Button sx={{ minWidth: 100 }}>My Habbits</Button>
-        <Link
-          className="link-koji-nervira"
-          sx={{ textDecoration: "none !important" }}
-          href="/progress"
-        >
+        <Link className="link-koji-nervira" href="/habbits">
+          {" "}
+          <Button sx={{ minWidth: 100 }}>My Habbits</Button>
+        </Link>
+
+        <Link className="link-koji-nervira" href="/progress">
           {" "}
           <Button sx={{ minWidth: 100, textDecoration: "none" }}>
             Progress

@@ -9,13 +9,16 @@ import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 //componenets
 import { Habbit } from "./Habbit";
-
+import Loading from "../../app/loading";
 const Habbits = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [photo, setPhoto] = useState("");
   const email = localStorage.getItem("email");
   const habbitAdded = useSelector((state) => state.habbit.habbitAdded);
+  const isLoading = useSelector((state) => state.habbit.isLoading);
+
+  console.log("isLoading:", isLoading);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +36,11 @@ const Habbits = () => {
   }, [habbitAdded]);
 
   console.log("Data je ", data);
+
+  useEffect(() => {
+    dispatch(habbitActions.isLoadingChange());
+    console.log("ISLOADING:", isLoading);
+  }, []);
 
   useEffect(() => {
     //adding the user photo
@@ -56,9 +64,8 @@ const Habbits = () => {
 
   return (
     <div className={styles["habbits-container"]}>
-      {data?.length > 0 ? (
-        habbitsToShow
-      ) : (
+      {isLoading ? <Loading /> : ""}
+      {!isLoading && data?.length < 0 ? (
         <div
           style={{
             margin: "0 auto",
@@ -76,6 +83,8 @@ const Habbits = () => {
           <h1>No Habbits</h1>{" "}
           <img src="https://media.tenor.com/oslAUCxTbO4AAAAd/rock-sus.gif" />
         </div>
+      ) : (
+        habbitsToShow
       )}
     </div>
   );

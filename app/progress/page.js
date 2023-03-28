@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 //next features
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 //css
 import "./page.css";
@@ -17,10 +17,7 @@ const Progress = () => {
 
   const localSLog = localStorage.getItem("isLoggedIn");
 
-  const [isLoggedInLocalStorage, setIsLoggedInLocalStorage] =
-    useState(localSLog);
-
-  if (!isLoggedInLocalStorage || !isLoggedIn) {
+  if (localSLog == "false") {
     router.push("/login");
   }
 

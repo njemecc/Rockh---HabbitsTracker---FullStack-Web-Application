@@ -20,16 +20,12 @@ const HabbitsPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  //const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const localSLog = localStorage.getItem("isLoggedIn");
+  console.log(localSLog);
 
-  const [isLoggedInLocalStorage, setIsLoggedInLocalStorage] =
-    useState(localSLog);
-
-  console.log(isLoggedInLocalStorage);
-
-  if (!isLoggedInLocalStorage) {
+  if (localSLog == "false") {
     router.push("/login");
   }
 
