@@ -62,7 +62,7 @@ const Register = () => {
   }
 
   return (
-    <>
+    <div className="register-container">
       <Link href="/">
         <Image className="image-logo" src={logo} />
       </Link>
@@ -92,7 +92,7 @@ const Register = () => {
         </form>
       </div>
       <ToastContainer />
-    </>
+    </div>
   );
 };
 

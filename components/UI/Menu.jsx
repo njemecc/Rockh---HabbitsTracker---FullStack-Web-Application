@@ -76,12 +76,7 @@ export default function AccountMenu() {
           <Button sx={{ minWidth: 100 }}>My Habbits</Button>
         </Link>
 
-        <Link className="link-koji-nervira" href="/progress">
-          {" "}
-          <Button sx={{ minWidth: 100, textDecoration: "none" }}>
-            Progress
-          </Button>
-        </Link>
+      
 
         <Button onClick={handleOpen}>Add Habbit</Button>
         <input onChange={dateChangeHandler} type="date" />

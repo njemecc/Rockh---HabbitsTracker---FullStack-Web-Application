@@ -25,7 +25,7 @@
   --padding-footer-mobile: 25rem 3rem 1rem;
 }
 
-body {
+.login-container  {
   background-color: var(--primary-color-dark-blue-2);
   color: var(--neutral-color-white);
   font-family: var(--font-body);
@@ -36,7 +36,7 @@ body {
   top: 0px;
   left: 0px;
 }
-body {
+.login-container  {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,7 +166,7 @@ body {
   color: #45f3ff;
 }
 
-input[type="submit"] {
+l ogin-container input[type="submit"] {
   border: none;
   outline: none;
   background: #45f3ff;

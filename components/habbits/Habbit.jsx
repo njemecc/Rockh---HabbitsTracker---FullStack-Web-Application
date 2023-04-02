@@ -7,6 +7,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { habbitActions } from "@/store/habbitSlice";
 
+//next router
+
+import { useRouter } from "next/navigation";
+
 //Toastr react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,6 +22,7 @@ import ChangeModal from "../UI/ChangeModal";
 import { Button, Avatar, TextField, Typography } from "@mui/material";
 
 export const Habbit = (props) => {
+  const router = useRouter()
   const [image, setImage] = useState(props.image);
   const dispatch = useDispatch();
   const openChange = useSelector((state) => state.habbit.changeOpen);
@@ -101,11 +106,16 @@ export const Habbit = (props) => {
     }
   }, [dateChanged]);
 
+
+  const sendToNameHabbitPage = ( ) => {
+    router.push(`/habbits/${props.name}`)
+  }
+
   return (
     <div key={props.name} className={styles["habbit-container"]}>
       <Avatar
+       onClick={sendToNameHabbitPage}
         className={styles["avatar"]}
-        onClick={modalChangeOpened}
         sx={{ width: 52, height: 52 }}
       >
         <img
@@ -139,11 +149,21 @@ export const Habbit = (props) => {
         className={styles[`${btnClass}`]}
         //disabled={disabled}
         onClick={doneButtonClickedHandler}
-        style={{ marginLeft: "7rem" }}
+        style={{ marginLeft: "6rem" }}
         variant="contained"
       >
         {btnText}
       </Button>
+      <Button
+      onClick={modalChangeOpened}
+        id="btn-done"
+        className={styles["btn-normal"]}
+        style={{ marginLeft: "1rem" }}
+        
+      >
+        Edit
+      </Button>
+      
       <Button
         id="btn-done"
         className={styles["btn-danger"]}

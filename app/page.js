@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "./page.module.css";
-import "./page.css";
+import  "./page.css";
+
 import logo from "../public/logo-nobg.png";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import { GitHub } from "@mui/icons-material";
@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   console.log(logo);
   return (
-    <>
+    <div className="global-home-container">
       <header>
         <div class="logo-container">
           <Image className="image-logo" src={logo} />
@@ -51,7 +51,7 @@ export default function Home() {
               Rockh stores all your most important habbits in one place. Access them wherever you need, share and collaborate
               with friends family, and co-workers.
             </p>
-           <Link href="/register"><button class="btn mt-2"> Get Started</button></Link>
+           <Link href="/register"><button class="btn mt-2 global-button"> Get Started</button></Link>
           </div>
         </section>
         <section class="features">
@@ -244,7 +244,7 @@ export default function Home() {
                 type="text"
                 placeholder="example@email.com"
               />{" "}
-              <button class="btn-block">Get Started For Free</button>{" "}
+              <button class="btn-block global-button">Get Started For Free</button>{" "}
             </form>
           </div>
         </section>
@@ -359,6 +359,6 @@ export default function Home() {
           </div>
         </section>
       </footer>
-    </>
+    </div>
   );
 }
