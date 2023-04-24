@@ -1,0 +1,36 @@
+.fromToDiv div {
+  border: 1px solid white;
+  color: white;
+}
+
+.glavni-kontejner-div {
+  border: 2px solid red;
+  /* margin: "0 auto";
+        alignItems: "center";
+        width: "80rem"; */
+}
+
+@media (min-width: 550px) {
+  .fromToDiv {
+    display: flex;
+    width: 80%;
+    gap: 5rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5rem;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+
+    border: 1px solid green;
+  }
+}
+
+.chart-div {
+  width: 50%;
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+  border: 1px solid blue;
+}

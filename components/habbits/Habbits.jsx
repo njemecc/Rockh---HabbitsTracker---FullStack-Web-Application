@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { habbitActions } from "@/store/habbitSlice";
 import { userActions } from "@/store/userSlice";
-import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 //componenets
 import { Habbit } from "./Habbit";
@@ -18,8 +17,6 @@ const Habbits = () => {
   const habbitAdded = useSelector((state) => state.habbit.habbitAdded);
   const isLoading = useSelector((state) => state.habbit.isLoading);
 
-  console.log("isLoading:", isLoading);
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetch("/api/getHabbits", {
@@ -27,10 +24,11 @@ const Habbits = () => {
         body: JSON.stringify(email),
       });
 
-      const res = await result.json();
-      console.log(res);
-      setData(res[0]);
-      setPhoto(res[1]);
+      const res = await result.json().then((res2) => {
+        console.log("evo me u resu", res2);
+        setData(res2[0]);
+        setPhoto(res2[1]);
+      });
     };
     fetchData();
   }, [habbitAdded]);
@@ -62,32 +60,7 @@ const Habbits = () => {
     dispatch(habbitActions.changeOpenState());
   };
 
-  return (
-    <div className={styles["habbits-container"]}>
-      {isLoading ? <Loading /> : ""}
-      {!isLoading && data?.length < 0 ? (
-        <div
-          style={{
-            margin: "0 auto",
-            width: "600px",
-            marginTop: "8rem",
-            fontSize: "54px",
-            textAlign: "center",
-          }}
-        >
-          {
-            <Button variant="contained" onClick={handleOpen}>
-              Add Habbit
-            </Button>
-          }
-          <h1>No Habbits</h1>{" "}
-          <img src="https://media.tenor.com/oslAUCxTbO4AAAAd/rock-sus.gif" />
-        </div>
-      ) : (
-        habbitsToShow
-      )}
-    </div>
-  );
+  return data == [] ? <Loading /> : habbitsToShow;
 };
 
 export default Habbits;

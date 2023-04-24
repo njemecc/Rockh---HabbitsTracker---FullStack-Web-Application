@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
@@ -8,7 +9,6 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
@@ -19,7 +19,7 @@ import Image from "next/image";
 import logo from "../../public/logo-nobg.png";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { useState } from "react";
 //redux
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -27,6 +27,7 @@ import { habbitActions } from "@/store/habbitSlice";
 import { userActions } from "@/store/userSlice";
 
 export default function AccountMenu() {
+  //const [dateVisible, setDateVisible] = useState(localStorage.getItem("date"));
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -39,6 +40,10 @@ export default function AccountMenu() {
 
   const dispatch = useDispatch();
   const photo = useSelector((state) => state.user.photo);
+
+  const datePickerIsVisible = useSelector((state) => state.habbit.datePicker);
+
+  console.log("datePicker je ", datePickerIsVisible);
 
   const handleOpen = () => {
     dispatch(habbitActions.changeOpenState());
@@ -76,10 +81,17 @@ export default function AccountMenu() {
           <Button sx={{ minWidth: 100 }}>My Habbits</Button>
         </Link>
 
-      
-
-        <Button onClick={handleOpen}>Add Habbit</Button>
-        <input onChange={dateChangeHandler} type="date" />
+        <Button
+          className={!datePickerIsVisible ? "invisible" : ""}
+          onClick={handleOpen}
+        >
+          Add Habbit
+        </Button>
+        <input
+          className={!datePickerIsVisible ? "invisible" : ""}
+          onChange={dateChangeHandler}
+          type="date"
+        />
 
         <Tooltip title="Account settings">
           <IconButton
@@ -134,16 +146,30 @@ export default function AccountMenu() {
         <MenuItem onClick={handleClose}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
+        <Link
+          style={{ color: "black" }}
+          className="link-koji-nervira"
+          href="/habbits"
+        >
+          <MenuItem onClick={handleClose}>
+            <Avatar /> My habbits
+          </MenuItem>
+        </Link>
+
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
+        <Link
+          style={{ color: "black" }}
+          className="link-koji-nervira"
+          href="/login"
+        >
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <PersonAdd fontSize="small" />
+            </ListItemIcon>
+            Login with another account
+          </MenuItem>
+        </Link>
+
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />

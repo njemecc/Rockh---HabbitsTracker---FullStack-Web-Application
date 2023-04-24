@@ -10,6 +10,7 @@ import { habbitActions } from "@/store/habbitSlice";
 //next router
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 //Toastr react
 import { ToastContainer, toast } from "react-toastify";
@@ -22,7 +23,7 @@ import ChangeModal from "../UI/ChangeModal";
 import { Button, Avatar, TextField, Typography } from "@mui/material";
 
 export const Habbit = (props) => {
-  const router = useRouter()
+  const router = useRouter();
   const [image, setImage] = useState(props.image);
   const dispatch = useDispatch();
   const openChange = useSelector((state) => state.habbit.changeOpen);
@@ -106,23 +107,30 @@ export const Habbit = (props) => {
     }
   }, [dateChanged]);
 
-
-  const sendToNameHabbitPage = ( ) => {
-    router.push(`/habbits/${props.name}`)
-  }
+  // const sendToNameHabbitPage = () => {
+  //   router.push(`/habbits/${props.name}`);
+  // };
 
   return (
     <div key={props.name} className={styles["habbit-container"]}>
       <Avatar
-       onClick={sendToNameHabbitPage}
+        //onClick={sendToNameHabbitPage}
         className={styles["avatar"]}
         sx={{ width: 52, height: 52 }}
       >
-        <img
-          style={{ width: "100%", height: "100%", backgroundSize: "cover" }}
-          src={image}
-        />
+        <Link
+          href={{
+            pathname: `/habbits/habbit`,
+            query: { name: props.name },
+          }}
+        >
+          <img
+            style={{ width: "100%", height: "100%", backgroundSize: "cover" }}
+            src={image}
+          />
+        </Link>
       </Avatar>
+
       <Typography variant="h5" className={styles["Habbit-name"]}>
         {props.name}
       </Typography>
@@ -141,38 +149,38 @@ export const Habbit = (props) => {
         }}
         variant="p"
         fontSize="1.2rem"
-        className={styles["Habbit-name"]}
+        className={styles["Habbit-name goal"]}
       >{`GOAL: ${props.goal} ${props.currency}`}</Typography>
+      <div className={styles["buttons-div"]}>
+        <Button
+          id="btn-done"
+          className={styles[`${btnClass}`]}
+          //disabled={disabled}
+          onClick={doneButtonClickedHandler}
+          style={{ marginLeft: "6rem" }}
+          variant="contained"
+        >
+          {btnText}
+        </Button>
+        <Button
+          onClick={modalChangeOpened}
+          id="btn-done"
+          className={styles["btn-normal"]}
+          style={{ marginLeft: "1rem" }}
+        >
+          Edit
+        </Button>
 
-      <Button
-        id="btn-done"
-        className={styles[`${btnClass}`]}
-        //disabled={disabled}
-        onClick={doneButtonClickedHandler}
-        style={{ marginLeft: "6rem" }}
-        variant="contained"
-      >
-        {btnText}
-      </Button>
-      <Button
-      onClick={modalChangeOpened}
-        id="btn-done"
-        className={styles["btn-normal"]}
-        style={{ marginLeft: "1rem" }}
-        
-      >
-        Edit
-      </Button>
-      
-      <Button
-        id="btn-done"
-        className={styles["btn-danger"]}
-        onClick={deleteButtonClickedHandler}
-        style={{ marginLeft: "1rem" }}
-        variant="contained"
-      >
-        Delete
-      </Button>
+        <Button
+          id="btn-done"
+          className={styles["btn-danger"]}
+          onClick={deleteButtonClickedHandler}
+          style={{ marginLeft: "1rem" }}
+          variant="contained"
+        >
+          Delete
+        </Button>
+      </div>
       <ChangeModal
         key={props.name}
         oldName={props.name}

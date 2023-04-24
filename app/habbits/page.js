@@ -5,20 +5,25 @@ import "./page.css";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "@/store/userSlice";
+import { habbitActions } from "@/store/habbitSlice";
 
 //hooks
 import { useState } from "react";
 
 //komponente
 import Habbits from "@/components/habbits/Habbits";
-import AccountMenu from "@/components/UI/Menu";
 
-import { Button } from "@mui/material";
 import MyModal from "@/components/UI/Modal";
 
 const HabbitsPage = () => {
+  //test koliko se puta revalidira ova komponenta
+
+  //datepciker
+  localStorage.setItem("datepicker", true);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  dispatch(habbitActions.changeDatePickerTrue());
 
   //const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
@@ -38,6 +43,8 @@ const HabbitsPage = () => {
   setTimeout(() => {
     dispatch(userActions.changeLoginState());
     setIsLoggedInLocalStorage(false);
+
+    localStorage.setItem("isLoggedIn", false);
   }, 86400000);
 
   //modal
@@ -48,7 +55,7 @@ const HabbitsPage = () => {
   return (
     <>
       <Habbits />
-      <MyModal open={open} onClose={handleClose} />
+      <MyModal />
     </>
   );
 };

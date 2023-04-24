@@ -20,11 +20,13 @@ export async function POST(request) {
 
     console.log("photo je", photo);
 
-    await disconnectDB();
+    //await disconnectDB();
   } catch (error) {
     console.error(error);
   }
   console.log(habbits);
+
+  console.log("bidibao", JSON.stringify([habbits, photo]));
 
   return new Response(JSON.stringify([habbits, photo]));
 }

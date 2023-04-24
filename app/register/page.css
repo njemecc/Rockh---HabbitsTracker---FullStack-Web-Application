@@ -43,7 +43,7 @@
   align-items: center;
   min-height: 100vh;
 }
-.box {
+.box-register {
   position: relative;
   width: 380px;
   height: 480px;
@@ -51,7 +51,7 @@
   border-radius: 8px;
   overflow: hidden;
 }
-.box::before {
+.box-register::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -62,7 +62,7 @@
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
 }
-.box::after {
+.box-register::after {
   content: "";
   position: absolute;
   top: -50%;
@@ -180,4 +180,13 @@ input[type="submit"] {
 }
 input[type="submit"]:active {
   opacity: 0.8;
+}
+
+
+@media(max-width:680px){
+  .image-logo{
+    top:-8%;
+    left:-8%
+
+  }
 }

@@ -13,6 +13,24 @@ input[type="date"] {
   border-radius: 5px;
 }
 
+@media (max-width: 820px) {
+  input[type="date"] {
+    top: 25%;
+    right: -12%;
+  }
+  * {
+    overflow: hidden;
+  }
+}
+
 .link-koji-nervira {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+.link-koji-nervira button {
+  color: white !important;
+}
+
+.invisible {
+  display: none;
 }

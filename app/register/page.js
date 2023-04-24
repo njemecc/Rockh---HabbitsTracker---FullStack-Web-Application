@@ -63,10 +63,10 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <Link href="/">
-        <Image className="image-logo" src={logo} />
+      <Link className="image-logo" href="/">
+        <Image  src={logo} />
       </Link>
-      <div className="box">
+      <div className="box-register">
         <form onSubmit={submitRegisterHandler} className="form">
           <h2>REGISTER</h2>
           <div className="inputBox">

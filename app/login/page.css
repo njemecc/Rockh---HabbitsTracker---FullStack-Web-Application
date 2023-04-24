@@ -25,7 +25,7 @@
   --padding-footer-mobile: 25rem 3rem 1rem;
 }
 
-.login-container  {
+.login-container {
   background-color: var(--primary-color-dark-blue-2);
   color: var(--neutral-color-white);
   font-family: var(--font-body);
@@ -36,7 +36,7 @@
   top: 0px;
   left: 0px;
 }
-.login-container  {
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +50,7 @@
   border-radius: 8px;
   overflow: hidden;
 }
+
 .box::before {
   content: "";
   position: absolute;
@@ -166,7 +167,7 @@
   color: #45f3ff;
 }
 
-l ogin-container input[type="submit"] {
+input[type="submit"] {
   border: none;
   outline: none;
   background: #45f3ff;
@@ -177,6 +178,15 @@ l ogin-container input[type="submit"] {
   font-weight: 600;
   cursor: pointer;
 }
+
 input[type="submit"]:active {
   opacity: 0.8;
+}
+
+@media(max-width:680px){
+  .image-logo{
+    top:-6%;
+    left:-8%
+
+  }
 }

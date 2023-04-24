@@ -3,11 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const habbitInitialState = {
   open: false,
-  habbitAdded: true,
+  habbitAdded: false,
   date: "",
   dateChanged: false,
   changeOpen: false,
   isLoading: true,
+  datePicker: true,
 };
 
 const habbitSlice = createSlice({
@@ -31,6 +32,12 @@ const habbitSlice = createSlice({
     },
     isLoadingChange(state) {
       state.isLoading = false;
+    },
+    changeDatePickerFalse(state) {
+      state.datePicker = false;
+    },
+    changeDatePickerTrue(state) {
+      state.datePicker = true;
     },
   },
 });

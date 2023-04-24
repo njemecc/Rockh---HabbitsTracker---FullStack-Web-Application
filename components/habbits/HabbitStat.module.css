@@ -1,0 +1,46 @@
+.container {
+  width: 40% !important;
+  max-height: 10rem;
+  border: 1px solid white;
+  text-align: left;
+}
+
+.gornji-deo {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 0px;
+}
+
+.text {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.donji-deo {
+  margin-left: 35%;
+  margin-top: 0px;
+}
+.donji-deo p {
+  font-size: 3rem !important;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 200rem !important;
+    text-align: center;
+  }
+  .text {
+    font-size: 0.8rem !important;
+    margin-left: 0px;
+  }
+
+  .donji-deo p {
+    font-size: 1rem !important;
+  }
+  .donji-deo {
+    margin-left: 0px;
+  }
+  .gornji-deo {
+    margin-left: 0px;
+  }
+}

@@ -16,15 +16,17 @@
   --padding-footer-mobile: 25rem 3rem 1rem;
 }
 
+body {
+  margin: 0px;
+}
 
-.global-home-container body {
+.global-home-container {
   background-color: var(--primary-color-dark-blue-2);
   color: var(--neutral-color-white);
   font-family: var(--font-body);
 }
 
-.global-home-container
-h1,
+.global-home-container h1,
 h2,
 h3,
 h4,
@@ -358,7 +360,7 @@ footer i {
   .global-home-container header {
     padding: var(--padding-sm);
   }
-  .global-home-container  header img,
+  .global-home-container header img,
   footer img {
     width: 117px;
     height: auto;
@@ -430,7 +432,7 @@ footer i {
 }
 
 @media (max-width: 375px) {
-  .global-home-container  section {
+  .global-home-container section {
     padding: var(--padding-sm);
   }
   .cta-item {
